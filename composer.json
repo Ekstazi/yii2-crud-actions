@@ -1,0 +1,20 @@
+{
+    "name": "Ekstazi/yii2-crud-actions",
+    "description": "Actions for basic crud",
+    "require": {
+        "yiisoft/yii2": "*"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ekstazi",
+            "email": "ekstazyst@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "ekstazi\\crud\\": ""
+        }
+    }
+}
