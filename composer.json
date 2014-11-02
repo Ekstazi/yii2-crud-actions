@@ -1,20 +1,23 @@
 {
     "name": "Ekstazi/yii2-crud-actions",
     "description": "Actions for basic crud",
-    "require": {
-        "yiisoft/yii2": "*"
-    },
+    "keywords": ["yii", "extension", "actions", "crud"],
+    "homepage": "https://github.com/Ekstazi/yii2-crud-actions",
+    "type": "yii2-extension",
     "license": "MIT",
     "authors": [
         {
-            "name": "Ekstazi",
+            "name": "Maxim Furtuna",
             "email": "ekstazyst@gmail.com"
         }
     ],
     "minimum-stability": "dev",
+    "require": {
+        "yiisoft/yii2": "*"
+    },
     "autoload": {
         "psr-4": {
-            "ekstazi\\crud\\": ""
+            "ekstazi\\crud\\": "src/",
         }
     }
 }
