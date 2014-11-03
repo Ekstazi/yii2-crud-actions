@@ -14,6 +14,7 @@ use ekstazi\crud\actions\DeleteAction;
 use ekstazi\crud\actions\IndexAction;
 use ekstazi\crud\actions\UpdateAction;
 use ekstazi\crud\actions\ViewAction;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 
 /**
@@ -56,4 +57,16 @@ class CrudController extends Controller
             ]
         ];
     }
-} 
+
+    public function behaviors()
+    {
+        return [
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'delete' => ['post'],
+                ],
+            ],
+        ];
+    }
+}

@@ -13,6 +13,7 @@ use ekstazi\crud\actions\CreateAction;
 use ekstazi\crud\actions\DeleteAction;
 use ekstazi\crud\actions\IndexAction;
 use ekstazi\crud\actions\UpdateAction;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 
 /**
@@ -53,4 +54,17 @@ class AdminController extends Controller
             ],
         ];
     }
-} 
+
+    public function behaviors()
+    {
+        return [
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'delete' => ['post'],
+                ],
+            ],
+        ];
+    }
+
+}
