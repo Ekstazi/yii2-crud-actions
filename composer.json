@@ -19,5 +19,7 @@
         "psr-4": {
             "ekstazi\\crud\\": "src/"
         }
-    }
-}
+    },
+    "extra": {
+        "bootstrap": "Ekstazi\\crud\\Bootstrap"
+    }}
