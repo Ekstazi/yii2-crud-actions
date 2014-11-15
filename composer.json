@@ -8,9 +8,16 @@
     "authors": [
         {
             "name": "Maxim Furtuna",
-            "email": "ekstazyst@gmail.com"
+            "email": "ekstazyst@gmail.com",
+            "homepage": "http://furtuna.name/",
+            "role": "Creator"
         }
     ],
+    "support": {
+        "issues": "https://github.com/ekstazi/yii2-crud-actions/issues",
+        "wiki": "https://github.com/ekstazi/yii2-crud-actions/wiki",
+        "source": "https://github.com/ekstazi/yii2-crud-actions"
+    },
     "minimum-stability": "dev",
     "require": {
         "yiisoft/yii2": "*"
