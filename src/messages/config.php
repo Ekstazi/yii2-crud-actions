@@ -6,7 +6,7 @@
  * Time: 23:48
  */
 Yii::$app->on(\yii\base\Application::EVENT_AFTER_ACTION,function(){
-    unlink(__DIR__."/ru/yii.php");
+    //unlink(__DIR__."/ru/yii.php");
     chdir(__DIR__);
     foreach (glob(__DIR__."/ru/ekstazi/*.php") as $file)
     {

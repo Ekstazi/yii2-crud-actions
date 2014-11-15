@@ -33,7 +33,7 @@ class Bootstrap implements BootstrapInterface
                 'sourceLanguage' => 'en-US',
                 'basePath' => '@ekstazi/crud/messages',
                 'fileMap' => [
-                    'ekstazi/crud' => 'crud'
+                    'ekstazi/crud' => 'crud.php'
                 ]
             ];
         }

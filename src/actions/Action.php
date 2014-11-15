@@ -96,7 +96,10 @@ class Action extends \yii\base\Action
             throw new BadRequestHttpException($finder->getError());
 
         if (!$finder->exists())
-            throw new NotFoundHttpException(\Yii::t('ekstazi/crud', 'The requested page does not exist.'));
+            throw new NotFoundHttpException(\Yii::t(
+                Constants::MSG_CATEGORY_NAME,
+                'The requested page does not exist.'
+            ));
 
         return $finder->model;
     }
@@ -125,7 +128,10 @@ class Action extends \yii\base\Action
         if ($user->getIsGuest())
             $user->loginRequired();
         else
-            throw new ForbiddenHttpException(\Yii::t('ekstazi/crud', 'You are not allowed to perform this action.'));
+            throw new ForbiddenHttpException(\Yii::t(
+                Constants::MSG_CATEGORY_NAME,
+                'You are not allowed to perform this action.'
+            ));
     }
 
     /**

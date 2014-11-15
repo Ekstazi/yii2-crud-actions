@@ -17,6 +17,8 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Only BaseActiveRecord supported as IndexAction::$modelClass property' => 'Только потомки BaseActiveRecord поддерживаются в качестве св-ва IndexAction::$modelClass',
-    'The requested page does not exist.' => 'Запрашиваемая вами страница не найдена',
+    'Invalid data received for parameters "{params}".' => 'Неверные данные для параметров "{params}"',
+    'Missing required parameters: {params}' => 'Отсуттвуют необходимые параметры: {params}',
+    'The requested page does not exist.' => 'Запрошенная страница не найдена',
+    'You are not allowed to perform this action.' => 'Доступ к данной странице ограничен',
 ];

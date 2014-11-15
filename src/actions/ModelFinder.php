@@ -9,6 +9,7 @@
 namespace ekstazi\crud\actions;
 
 
+use ekstazi\crud\Constants;
 use yii\base\InvalidCallException;
 use yii\base\InvalidConfigException;
 use yii\base\Model;
@@ -124,18 +125,27 @@ class ModelFinder extends Model
         }
 
         if (count($missing)) {
-            return $this->addError($attr, \Yii::t('ekstazi/crud', 'Missing required parameters: {params}', [
-                'params' => implode(', ', $missing),
-            ]));
+            return $this->addError($attr, \Yii::t(
+                Constants::MSG_CATEGORY_NAME,
+                'Missing required parameters: {params}',
+                [
+                    'params' => implode(', ', $missing),
+                ]
+            ));
         }
 
         if (count($invalid)) {
-            return $this->addError($attr, \Yii::t('ekstazi/crud', 'Invalid data received for parameters "{params}".', [
-                'params' => implode(', ', $invalid),
-            ]));
+            return $this->addError($attr, \Yii::t(
+                Constants::MSG_CATEGORY_NAME,
+                'Invalid data received for parameters "{params}".',
+                [
+                    'params' => implode(', ', $invalid),
+                ]
+            ));
         }
 
         $this->_pk = $columns;
+
     }
 
     /**
