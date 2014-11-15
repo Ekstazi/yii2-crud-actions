@@ -9,32 +9,41 @@
 namespace ekstazi\crud\actions;
 
 
-use ekstazi\crud\actions\traits\RenderTrait;
 use ekstazi\crud\Constants;
-use yii\base\Action;
 use yii\base\InvalidConfigException;
 use yii\data\ActiveDataProvider;
 use yii\db\BaseActiveRecord;
 use yii\web\Response;
 
 /**
- * Class IndexAction show models
+ * Class IndexAction
+ * List models action
  * @package ekstazi\crud\actions
  */
 class IndexAction extends Action
 {
-    use RenderTrait;
 
     /**
-     * @var string class name. Mast be child of BaseActiveRecord
+     * @var mixed expression for prepare data provider. It can be one of the followings:
+     *
+     * - a PHP callable that will be called to prepare a data provider that should return a collection of the models.
+     *   The signature of the callable should be:
+     *
+     *   ```php
+     *   function ($action, $model) {
+     *     // $action is the action object currently running
+     *     // $model is the searcher model
+     *   }
+     *   ```
+     *
+     *   The callable should return an instance of [[ActiveDataProvider]].
+     *
+     * - a string name of model method that will be called to get data provider.
+     *   Should return an instance of [[ActiveDataProvider]]. Additionally the action object passed as first argument.
+     *
+     * - if not set, [[prepareDataProvider()]] will be used instead.
      */
-    public $modelClass;
-
-    /**
-     * @var string Name of method wich try to use for getting DataProvider.
-     * If no method exists in model then use Model::find to create provider
-     */
-    public $methodName = 'search';
+    public $prepareDataProvider;
 
     /**
      * @var string View file name
@@ -42,30 +51,36 @@ class IndexAction extends Action
     public $viewName = 'index';
 
     /**
-     * @return Response
      * @throws InvalidConfigException
      */
     public function run()
     {
-        /** @var BaseActiveRecord $searchModel */
+        $this->ensureAccess();
+
+        /* @var $searchModel \yii\db\BaseActiveRecord */
         $searchModel = new $this->modelClass;
-        $methodName = $this->methodName;
+        $dataProvider = $this->prepareDataProvider($searchModel);
 
-        if (isset($methodName) && method_exists($searchModel, $methodName)) {
-            $dataProvider = $searchModel->$methodName(\Yii::$app->request->queryParams);
+        return $this->controller->render($this->viewName, compact('searchModel', 'dataProvider'));
+    }
 
-        } elseif ($searchModel instanceof BaseActiveRecord) {
-            $dataProvider = new ActiveDataProvider([
-                'query' => $searchModel::find()
+    /**
+     * Prepares the data provider that should return the requested collection of the models.
+     * @return ActiveDataProvider
+     */
+    protected function prepareDataProvider(BaseActiveRecord $model)
+    {
+        if (!isset($this->prepareDataProvider))
+            return new ActiveDataProvider([
+                'query' => $model::find(),
             ]);
 
-        } else {
-            throw new InvalidConfigException(\Yii::t(Constants::MSG_CATEGORY_NAME,'Only BaseActiveRecord supported as IndexAction::$modelClass property'));
-        }
+        if ($this->prepareDataProvider instanceof \Closure)
+            return call_user_func($this->prepareDataProvider, $this, $model);
 
-        return $this->render($this->viewName, [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+        if (is_string($this->prepareDataProvider) && $model->hasMethod($this->prepareDataProvider))
+            return $model->{$this->prepareDataProvider}($this);
+
+        throw new InvalidConfigException('Not supported configuration fore {{prepareDataProvider}} property');
     }
-} 
+}

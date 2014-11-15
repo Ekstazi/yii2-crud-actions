@@ -9,30 +9,28 @@
 namespace ekstazi\crud\actions;
 
 
-use ekstazi\crud\actions\traits\ModelTrait;
-use ekstazi\crud\actions\traits\RedirectTrait;
-use yii\base\Action;
 use yii\web\Response;
+use yii\web\ServerErrorHttpException;
 
 /**
- * Class DeleteAction delete model actions
+ * Class DeleteAction
+ * Delete model actions
+ * @property string $modelClass class name. Must be child of BaseActiveRecord
  * @package ekstazi\crud\actions
  */
 class DeleteAction extends Action
 {
-    use ModelTrait,
-        RedirectTrait;
 
     /**
-     * @var string model class name must be child of BaseActiveRecord
+     * @var mixed $redirectTo the route to redirect to. It can be one of the followings:
+     *
+     * - A PHP callable. The callable will be executed to get route. The signature of the callable
+     *   should be `function ($model)`, where `$model` is model object.
+     *
+     * - An array. Treated as route. If last value of route array is @_pk_ then replaced to appropriate pk of model.
+     * - A string. Treated as redirect url
      */
-    public $modelClass;
-
-    /**
-     * @var array Url to redirect after delete
-     * Additional token @_pk_ in url will be replaced with model pk
-     */
-    public $redirectTo=['index'];
+    public $redirectTo = ['index'];
 
     /**
      * @return Response
@@ -42,8 +40,13 @@ class DeleteAction extends Action
      */
     public function run()
     {
-        $model=$this->findModel(\Yii::$app->request->get());
-        $model->delete();
-        return $this->redirect($this->redirectTo,$model);
+        $model = $this->findModel(\Yii::$app->request->get());
+        $this->ensureAccess(compact('model'));
+
+        if ($model->delete() === false) {
+            throw new ServerErrorHttpException('Failed to delete the object for unknown reason.');
+        }
+
+        $this->redirect($this->redirectTo, $model);
     }
 } 
