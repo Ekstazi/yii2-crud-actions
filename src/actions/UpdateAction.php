@@ -12,7 +12,6 @@ use yii\base\Model;
 
 
 /**
- * Class UpdateAction
  * Update model action
  * @package ekstazi\crud\actions
  */

@@ -10,7 +10,6 @@ namespace ekstazi\crud\actions;
 
 
 /**
- * Class ViewAction
  * View model action
  * @package ekstazi\crud\actions
  */

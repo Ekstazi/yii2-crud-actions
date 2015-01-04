@@ -13,8 +13,7 @@ use yii\base\InvalidConfigException;
 use yii\db\ActiveRecord;
 
 /**
- * Helper for model's options in [[Action]]
- * Class Model
+ * Helper for model's options in [[\ekstazi\crud\actions\Action]]
  * @package ekstazi\crud\helpers
  */
 class Model

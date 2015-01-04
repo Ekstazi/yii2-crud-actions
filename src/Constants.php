@@ -9,7 +9,14 @@
 namespace ekstazi\crud;
 
 
+/**
+ * Constants for actions
+ * @package ekstazi\crud
+ */
 interface Constants
 {
+    /**
+     * Category name for i18n message source
+     */
     const MSG_CATEGORY_NAME = "ekstazi/crud";
 } 

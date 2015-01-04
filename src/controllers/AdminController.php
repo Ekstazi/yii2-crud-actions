@@ -17,7 +17,6 @@ use yii\filters\VerbFilter;
 use yii\web\Controller;
 
 /**
- * Class AdminController
  * Admin controller support all crud actions except viewing
  * @package ekstazi\crud\controllers
  */

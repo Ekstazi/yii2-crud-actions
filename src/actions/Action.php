@@ -42,7 +42,7 @@ class Action extends \yii\base\Action
      * ```
      *
      * If callable return false then perform standard access control filter behavior
-     * (like in [[AccessControl]]).
+     * (like in [[\yii\filters\AccessControl]]).
      */
     public $checkAccess;
 

@@ -1,14 +1,8 @@
 yii2-crud-actions
 =================
 
-Crud Actions for yii2
-
-
-yii2-crud-actions
-====================
-
-Набор классов для yii2 для быстрого прототипирования CRUD-действий.
-Примеры использования по отдельности:
+Set of classes for yii2 for rapid prototyping CRUD actions.
+Example of using:
 
 ```php
     public function actions()
@@ -37,3 +31,41 @@ yii2-crud-actions
         ];
     }
 ```
+
+For details, see the description of the api in doc folder
+
+yii2-crud-actions
+====================
+
+Набор классов для yii2 для быстрого прототипирования CRUD-действий.
+Пример использования:
+
+```php
+    public function actions()
+    {
+        return [
+            'index' => [
+                'class' => IndexAction::className(),
+                'modelClass' => <modelClass>,
+            ],
+            'create' => [
+                'class' => CreateAction::className(),
+                'modelClass' => <modelClass>,
+            ],
+            'update' => [
+                'class' => UpdateAction::className(),
+                'modelClass' => <modelClass>,
+            ],
+            'delete' => [
+                'class' => DeleteAction::className(),
+                'modelClass' => <modelClass>,
+            ],
+            'view' => [
+                'class' => ViewAction::className(),
+                'modelClass' => <modelClass>
+            ]
+        ];
+    }
+```
+
+Для подробностей смотрите описание api в папке doc

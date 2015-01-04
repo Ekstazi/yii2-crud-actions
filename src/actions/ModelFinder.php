@@ -53,7 +53,7 @@ class ModelFinder extends Model
     protected $_pk;
 
     /**
-     * @var BaseActiveRecord
+     * @var BaseActiveRecord founded model
      */
     public $model;
 

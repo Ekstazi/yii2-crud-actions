@@ -16,7 +16,6 @@ use yii\db\BaseActiveRecord;
 use yii\web\Response;
 
 /**
- * Class IndexAction
  * List models action
  * @package ekstazi\crud\actions
  */

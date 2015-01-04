@@ -13,8 +13,7 @@ use yii\web\Response;
 use yii\web\ServerErrorHttpException;
 
 /**
- * Class DeleteAction
- * Delete model actions
+ * Delete model action
  * @property string $modelClass class name. Must be child of BaseActiveRecord
  * @package ekstazi\crud\actions
  */

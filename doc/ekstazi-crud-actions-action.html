@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="language" content="en" />
+        <link href="./assets/4b2dc560/css/bootstrap.css" rel="stylesheet">
+<link href="./assets/7a7045ef/style.css" rel="stylesheet">
+<script src="./assets/57db3cd6/jquery.js"></script>
+<script src="./assets/4b2dc560/js/bootstrap.js"></script>
+<script src="./assets/40e70bb/jssearch.js"></script>    <title>Yii Framework 2.0 API Documentation</title>
+</head>
+<body>
+
+<div class="wrap">
+    <nav id="w4" class="navbar-inverse navbar-fixed-top navbar" role="navigation"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#w4-collapse"><span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span></button><a class="navbar-brand" href="./index.html">Yii Framework 2.0 API Documentation</a></div><div id="w4-collapse" class="collapse navbar-collapse"><ul id="w5" class="navbar-nav nav"><li><a href="./index.html">Class reference</a></li></ul><div class="navbar-form navbar-left" role="search">
+  <div class="form-group">
+    <input id="searchbox" type="text" class="form-control" placeholder="Search">
+  </div>
+</div>
+</div></nav>
+    <div id="search-resultbox" style="display: none;" class="modal-content">
+        <ul id="search-results">
+        </ul>
+    </div>
+
+    
+<div class="row">
+    <div class="col-md-3">
+                <div id="navigation" class="list-group"><a class="list-group-item" href="#navigation-0" data-toggle="collapse" data-parent="#navigation">ekstazi\crud <b class="caret"></b></a><div id="navigation-0" class="submenu panel-collapse collapse"><a class="list-group-item" href="./ekstazi-crud-bootstrap.html">Bootstrap</a>
+<a class="list-group-item" href="./ekstazi-crud-constants.html">Constants</a></div>
+<a class="list-group-item active" href="#navigation-1" data-toggle="collapse" data-parent="#navigation">ekstazi\crud\actions <b class="caret"></b></a><div id="navigation-1" class="submenu panel-collapse collapse in"><a class="list-group-item active" href="./ekstazi-crud-actions-action.html">Action</a>
+<a class="list-group-item" href="./ekstazi-crud-actions-createaction.html">CreateAction</a>
+<a class="list-group-item" href="./ekstazi-crud-actions-deleteaction.html">DeleteAction</a>
+<a class="list-group-item" href="./ekstazi-crud-actions-indexaction.html">IndexAction</a>
+<a class="list-group-item" href="./ekstazi-crud-actions-modelfinder.html">ModelFinder</a>
+<a class="list-group-item" href="./ekstazi-crud-actions-updateaction.html">UpdateAction</a>
+<a class="list-group-item" href="./ekstazi-crud-actions-viewaction.html">ViewAction</a></div>
+<a class="list-group-item" href="#navigation-2" data-toggle="collapse" data-parent="#navigation">ekstazi\crud\controllers <b class="caret"></b></a><div id="navigation-2" class="submenu panel-collapse collapse"><a class="list-group-item" href="./ekstazi-crud-controllers-admincontroller.html">AdminController</a>
+<a class="list-group-item" href="./ekstazi-crud-controllers-crudcontroller.html">CrudController</a>
+<a class="list-group-item" href="./ekstazi-crud-controllers-frontcontroller.html">FrontController</a></div>
+<a class="list-group-item" href="#navigation-3" data-toggle="collapse" data-parent="#navigation">ekstazi\crud\helpers <b class="caret"></b></a><div id="navigation-3" class="submenu panel-collapse collapse"><a class="list-group-item" href="./ekstazi-crud-helpers-access.html">Access</a>
+<a class="list-group-item" href="./ekstazi-crud-helpers-model.html">Model</a></div></div>    </div>
+    <div class="col-md-9 api-content" role="main">
+        <h1>Class ekstazi\crud\actions\Action</h1>
+<div id="nav">
+    <a href="index.html">All Classes</a>
+            | <a href="#properties">Properties</a>
+                | <a href="#methods">Methods</a>
+            </div>
+
+<table class="summaryTable docClass table table-bordered">
+    <colgroup>
+        <col class="col-name" />
+        <col class="col-value" />
+    </colgroup>
+            <tr><th>Inheritance</th><td><a href="ekstazi-crud-actions-action.html">ekstazi\crud\actions\Action</a> &raquo;
+yii\base\Action</td></tr>
+                        <tr><th>Subclasses</th><td><a href="ekstazi-crud-actions-createaction.html">ekstazi\crud\actions\CreateAction</a>, <a href="ekstazi-crud-actions-deleteaction.html">ekstazi\crud\actions\DeleteAction</a>, <a href="ekstazi-crud-actions-indexaction.html">ekstazi\crud\actions\IndexAction</a>, <a href="ekstazi-crud-actions-updateaction.html">ekstazi\crud\actions\UpdateAction</a>, <a href="ekstazi-crud-actions-viewaction.html">ekstazi\crud\actions\ViewAction</a></td></tr>
+                    </table>
+
+<div id="classDescription">
+    <p><strong>Action is the base class for action classes that implement CRUD.</strong></p>
+    
+    </div>
+
+<a name="properties"></a>
+
+<div class="summary doc-property">
+<h2>Public Properties</h2>
+
+<p><a href="#" class="toggle">Hide inherited properties</a></p>
+
+<table class="summary-table table table-striped table-bordered table-hover">
+<colgroup>
+    <col class="col-property" />
+    <col class="col-type" />
+    <col class="col-description" />
+    <col class="col-defined" />
+</colgroup>
+<tr>
+  <th>Property</th><th>Type</th><th>Description</th><th>Defined By</th>
+</tr>
+        <tr id="$checkAccess">
+        <td><a href="ekstazi-crud-actions-action.html#$checkAccess-detail">$checkAccess</a></td>
+        <td><a href="http://www.php.net/language.types.callable">callable</a></td>
+        <td>A PHP callable that will be called when running an action to determine
+if the current user has the permission to execute the action.</td>
+        <td><a href="ekstazi-crud-actions-action.html">ekstazi\crud\actions\Action</a></td>
+    </tr>
+            <tr id="$modelClass">
+        <td><a href="ekstazi-crud-actions-action.html#$modelClass-detail">$modelClass</a></td>
+        <td><a href="http://www.php.net/language.types.string">string</a></td>
+        <td>Class name of the model which will be handled by this action.</td>
+        <td><a href="ekstazi-crud-actions-action.html">ekstazi\crud\actions\Action</a></td>
+    </tr>
+    </table>
+</div>
+
+<a name="methods"></a>
+
+<div class="summary doc-method">
+<h2>Public Methods</h2>
+
+<p><a href="#" class="toggle">Hide inherited methods</a></p>
+
+<table class="summary-table table table-striped table-bordered table-hover">
+<colgroup>
+    <col class="col-method" />
+    <col class="col-description" />
+    <col class="col-defined" />
+</colgroup>
+<tr>
+  <th>Method</th><th>Description</th><th>Defined By</th>
+</tr>
+            <tr id="findModel()">
+        <td><a href="ekstazi-crud-actions-action.html#findModel()-detail">findModel()</a></td>
+        <td>Find model by its pk from params</td>
+        <td><a href="ekstazi-crud-actions-action.html">ekstazi\crud\actions\Action</a></td>
+    </tr>
+            <tr id="init()">
+        <td><a href="ekstazi-crud-actions-action.html#init()-detail">init()</a></td>
+        <td></td>
+        <td><a href="ekstazi-crud-actions-action.html">ekstazi\crud\actions\Action</a></td>
+    </tr>
+            </table>
+</div>
+
+<div class="summary doc-method">
+<h2>Protected Methods</h2>
+
+<p><a href="#" class="toggle">Hide inherited methods</a></p>
+
+<table class="summary-table table table-striped table-bordered table-hover">
+<colgroup>
+    <col class="col-method" />
+    <col class="col-description" />
+    <col class="col-defined" />
+</colgroup>
+<tr>
+  <th>Method</th><th>Description</th><th>Defined By</th>
+</tr>
+        <tr id="ensureAccess()">
+        <td><a href="ekstazi-crud-actions-action.html#ensureAccess()-detail">ensureAccess()</a></td>
+        <td>Ensure this action is allowed for current user</td>
+        <td><a href="ekstazi-crud-actions-action.html">ekstazi\crud\actions\Action</a></td>
+    </tr>
+                    <tr id="redirect()">
+        <td><a href="ekstazi-crud-actions-action.html#redirect()-detail">redirect()</a></td>
+        <td>Redirect to route passed as param</td>
+        <td><a href="ekstazi-crud-actions-action.html">ekstazi\crud\actions\Action</a></td>
+    </tr>
+            <tr id="saveModel()">
+        <td><a href="ekstazi-crud-actions-action.html#saveModel()-detail">saveModel()</a></td>
+        <td></td>
+        <td><a href="ekstazi-crud-actions-action.html">ekstazi\crud\actions\Action</a></td>
+    </tr>
+    </table>
+</div>
+
+<a name="events"></a>
+
+<a name="constants"></a>
+
+<h2>Property Details</h2>
+
+<div class="property-doc">
+
+    <div class="detail-header h3" id="$checkAccess-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="ekstazi-crud-actions-action.html#$checkAccess-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        $checkAccess        <span class="detailHeaderTag small">
+            public                                    property
+                    </span>
+    </div>
+
+    <div class="signature"><a href="http://www.php.net/language.types.callable">callable</a> <a href="ekstazi-crud-actions-action.html#$checkAccess-detail">$checkAccess</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">null</span></div>
+
+    <p>A PHP callable that will be called when running an action to determine
+if the current user has the permission to execute the action. If not set, the access
+check will not be performed. The signature of the callable should be as follows,</p>
+<pre><code class="language-php"><span style="color: #0000BB"></span><span style="color: #007700">function&nbsp;(</span><span style="color: #0000BB">$model&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">null</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;$model&nbsp;is&nbsp;the&nbsp;requested&nbsp;model&nbsp;instance.<br />&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;If&nbsp;null,&nbsp;it&nbsp;means&nbsp;no&nbsp;specific&nbsp;model&nbsp;(e.g.&nbsp;IndexAction)<br /></span><span style="color: #007700">}</span></code></pre>
+<p>If callable return false then perform standard access control filter behavior
+(like in <span class="broken-link">\yii\filters\AccessControl</span>).</p>
+
+    
+
+    <div class="detail-header h3" id="$modelClass-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="ekstazi-crud-actions-action.html#$modelClass-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        $modelClass        <span class="detailHeaderTag small">
+            public                                    property
+                    </span>
+    </div>
+
+    <div class="signature"><a href="http://www.php.net/language.types.string">string</a> <a href="ekstazi-crud-actions-action.html#$modelClass-detail">$modelClass</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">null</span></div>
+
+    <p>Class name of the model which will be handled by this action.
+The model class must implement <span class="broken-link">\yii\db\ActiveRecordInterface</span>.
+This property must be set.</p>
+
+    
+</div>
+<h2>Method Details</h2>
+
+<div class="method-doc">
+
+    <div class="detail-header h3" id="ensureAccess()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="ekstazi-crud-actions-action.html#ensureAccess()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        ensureAccess()
+        <span class="detail-header-tag small">
+            protected            method
+                    </span>
+    </div>
+
+    <div class="doc-description">
+        <p><strong>Ensure this action is allowed for current user</strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature">void <strong><a href="ekstazi-crud-actions-action.html#ensureAccess()-detail">ensureAccess</a></strong><span style="color: #0000BB"></span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">$params&nbsp;</span><span style="color: #007700">=&nbsp;[]&nbsp;)</span></td></tr>
+                                    <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$params</span></td>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.array">array</a></td>
+                  <td class="param-desc-col"><p>Params to be passed to {$this-&gt;checkAccess}</p>
+</td>
+                </tr>
+                                                    <tr>
+                  <th class="param-name-col">throws</th>
+                  <td class="param-type-col">\yii\web\ForbiddenHttpException</td>
+                  <td class="param-desc-col"></td>
+                </tr>
+                        </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="findModel()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="ekstazi-crud-actions-action.html#findModel()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        findModel()
+        <span class="detail-header-tag small">
+            public            method
+                    </span>
+    </div>
+
+    <div class="doc-description">
+        <p><strong>Find model by its pk from params</strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature">\yii\db\ActiveRecordInterface <strong><a href="ekstazi-crud-actions-action.html#findModel()-detail">findModel</a></strong><span style="color: #0000BB"></span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">$params&nbsp;</span><span style="color: #007700">)</span></td></tr>
+                                    <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$params</span></td>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.array">array</a></td>
+                  <td class="param-desc-col"><p>Params for query</p>
+</td>
+                </tr>
+                                        <tr>
+                  <th class="param-name-col">return</th>
+                  <td class="param-type-col">\yii\db\ActiveRecordInterface</td>
+                  <td class="param-desc-col"><p>Found model</p>
+</td>
+                </tr>
+                                        <tr>
+                  <th class="param-name-col">throws</th>
+                  <td class="param-type-col">\yii\web\BadRequestHttpException</td>
+                  <td class="param-desc-col"><p>if error on fetching params for pk occured</p>
+</td>
+                </tr>
+                            <tr>
+                  <th class="param-name-col">throws</th>
+                  <td class="param-type-col">\yii\web\NotFoundHttpException</td>
+                  <td class="param-desc-col"><p>if model not exists</p>
+</td>
+                </tr>
+                        </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="init()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="ekstazi-crud-actions-action.html#init()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        init()
+        <span class="detail-header-tag small">
+            public            method
+                    </span>
+    </div>
+
+    <div class="doc-description">
+        <p><strong></strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature">void <strong><a href="ekstazi-crud-actions-action.html#init()-detail">init</a></strong><span style="color: #0000BB"></span><span style="color: #007700">(&nbsp;)</span></td></tr>
+                                                            <tr>
+                  <th class="param-name-col">throws</th>
+                  <td class="param-type-col">\yii\base\InvalidConfigException</td>
+                  <td class="param-desc-col"></td>
+                </tr>
+                        </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="redirect()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="ekstazi-crud-actions-action.html#redirect()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        redirect()
+        <span class="detail-header-tag small">
+            protected            method
+                    </span>
+    </div>
+
+    <div class="doc-description">
+        <p><strong>Redirect to route passed as param</strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature">mixed <strong><a href="ekstazi-crud-actions-action.html#redirect()-detail">redirect</a></strong><span style="color: #0000BB"></span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">$route</span><span style="color: #007700">,&nbsp;\</span><span style="color: #0000BB">yii</span><span style="color: #007700">\</span><span style="color: #0000BB">db</span><span style="color: #007700">\</span><span style="color: #0000BB">ActiveRecordInterface&nbsp;$model&nbsp;</span><span style="color: #007700">)</span></td></tr>
+                                    <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$route</span></td>
+                  <td class="param-type-col">mixed</td>
+                  <td class="param-desc-col"><p>The route to redirect to. It can be one of the followings:</p>
+<ul>
+<li>A PHP callable. The callable will be executed to get route. The signature of the callable
+should be:</li>
+</ul>
+<pre><code class="language-php"><span style="color: #0000BB"></span><span style="color: #007700">function&nbsp;(</span><span style="color: #0000BB">$model</span><span style="color: #007700">){<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;$model&nbsp;is&nbsp;the&nbsp;model&nbsp;object.<br /></span><span style="color: #007700">}</span></code></pre>
+<p>The callable should return route/url to redirect to.</p>
+<ul>
+<li>An array. Treated as route.</li>
+<li>A string. Treated as url.</li>
+</ul>
+</td>
+                </tr>
+                            <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$model</span></td>
+                  <td class="param-type-col">\yii\db\ActiveRecordInterface</td>
+                  <td class="param-desc-col"></td>
+                </tr>
+                                                </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="saveModel()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="ekstazi-crud-actions-action.html#saveModel()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        saveModel()
+        <span class="detail-header-tag small">
+            protected            method
+                    </span>
+    </div>
+
+    <div class="doc-description">
+        <p><strong></strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature">bool|mixed <strong><a href="ekstazi-crud-actions-action.html#saveModel()-detail">saveModel</a></strong><span style="color: #0000BB"></span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">$saveMethod</span><span style="color: #007700">,&nbsp;\</span><span style="color: #0000BB">yii</span><span style="color: #007700">\</span><span style="color: #0000BB">db</span><span style="color: #007700">\</span><span style="color: #0000BB">ActiveRecordInterface&nbsp;$model&nbsp;</span><span style="color: #007700">)</span></td></tr>
+                                    <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$saveMethod</span></td>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.callable">callable</a></td>
+                  <td class="param-desc-col"><p>A PHP callable that will be called to save model. If not set,
+{{BaseActiveRecord::save}} will be used instead.
+The signature of the callable should be:</p>
+<pre><code class="language-php"><span style="color: #0000BB"></span><span style="color: #007700">function(</span><span style="color: #0000BB">$model</span><span style="color: #007700">){<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;$model&nbsp;is&nbsp;the&nbsp;model&nbsp;object&nbsp;to&nbsp;save.<br /></span><span style="color: #007700">}</span></code></pre>
+<p>The callable should return status of saving operation</p>
+</td>
+                </tr>
+                            <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$model</span></td>
+                  <td class="param-type-col">\yii\db\ActiveRecordInterface</td>
+                  <td class="param-desc-col"></td>
+                </tr>
+                                                </table>
+
+<!--	-->
+</div>
+        </div>
+</div>
+
+<script type="text/javascript">
+    /*<![CDATA[*/
+    $("a.toggle").on('click', function () {
+        var $this = $(this);
+        if ($this.hasClass('properties-hidden')) {
+            $this.text($this.text().replace(/Show/,'Hide'));
+            $this.parents(".summary").find(".inherited").show();
+            $this.removeClass('properties-hidden');
+        } else {
+            $this.text($this.text().replace(/Hide/,'Show'));
+            $this.parents(".summary").find(".inherited").hide();
+            $this.addClass('properties-hidden');
+        }
+
+        return false;
+    });
+    /*
+     $(".sourceCode a.show").toggle(function () {
+     $(this).text($(this).text().replace(/show/,'hide'));
+     $(this).parents(".sourceCode").find("div.code").show();
+     },function () {
+     $(this).text($(this).text().replace(/hide/,'show'));
+     $(this).parents(".sourceCode").find("div.code").hide();
+     });
+     $("a.sourceLink").click(function () {
+     $(this).attr('target','_blank');
+     });
+     */
+    /*]]>*/
+</script>
+
+
+</div>
+
+<footer class="footer">
+        <p class="pull-right"><small>Page generated on Sun, 04 Jan 2015 19:53:43 +0200</small></p>
+    Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
+
+<script type="text/javascript">jQuery(document).ready(function () {
+    var shiftWindow = function () { scrollBy(0, -50) };
+    if (location.hash) shiftWindow();
+    window.addEventListener("hashchange", shiftWindow);
+var element = document.createElement("script");
+element.src = "./jssearch.index.js";
+document.body.appendChild(element);
+
+var searchBox = $('#searchbox');
+
+// search when typing in search field
+searchBox.on("keyup", function(event) {
+    var query = $(this).val();
+
+    if (query == '' || event.which == 27) {
+        $('#search-resultbox').hide();
+        return;
+    } else if (event.which == 13) {
+        var selectedLink = $('#search-resultbox a.selected');
+        if (selectedLink.length != 0) {
+            document.location = selectedLink.attr('href');
+            return;
+        }
+    } else if (event.which == 38 || event.which == 40) {
+        $('#search-resultbox').show();
+
+        var selected = $('#search-resultbox a.selected');
+        if (selected.length == 0) {
+            $('#search-results').find('a').first().addClass('selected');
+        } else {
+            var next;
+            if (event.which == 40) {
+                next = selected.parent().next().find('a').first();
+            } else {
+                next = selected.parent().prev().find('a').first();
+            }
+            if (next.length != 0) {
+                var resultbox = $('#search-results');
+                var position = next.position();
+
+//              TODO scrolling is buggy and jumps around
+//                resultbox.scrollTop(Math.floor(position.top));
+//                console.log(position.top);
+
+                selected.removeClass('selected');
+                next.addClass('selected');
+            }
+        }
+
+        return;
+    }
+    $('#search-resultbox').show();
+    $('#search-results').html('<li><span class="no-results">No results</span></li>');
+
+    var result = jssearch.search(query);
+
+    if (result.length > 0) {
+        var i = 0;
+        var resHtml = '';
+
+        for (var key in result) {
+            if (i++ > 20) {
+                break;
+            }
+            resHtml = resHtml +
+            '<li><a href="' + result[key].file.u.substr(3) +'"><span class="title">' + result[key].file.t + '</span>' +
+            '<span class="description">' + result[key].file.d + '</span></a></li>';
+        }
+        $('#search-results').html(resHtml);
+    }
+});
+
+// hide the search results on ESC
+$(document).on("keyup", function(event) { if (event.which == 27) { $('#search-resultbox').hide(); } });
+// hide search results on click to document
+$(document).bind('click', function (e) { $('#search-resultbox').hide(); });
+// except the following:
+searchBox.bind('click', function(e) { e.stopPropagation(); });
+$('#search-resultbox').bind('click', function(e) { e.stopPropagation(); });
+
+});</script></body>
+</html>

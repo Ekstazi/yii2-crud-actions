@@ -11,10 +11,8 @@ namespace ekstazi\crud\actions;
 
 use yii\base\Model;
 use yii\db\BaseActiveRecord;
-use yii\web\Response;
 
 /**
- * Class CreateAction
  * Create model action
  * @package ekstazi\crud\actions
  */

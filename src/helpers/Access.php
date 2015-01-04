@@ -9,7 +9,7 @@
 namespace ekstazi\crud\helpers;
 
 /**
- * Helper for [[Action::$checkAccess]] option
+ * Helper for [[\ekstazi\crud\actions\Action::$checkAccess]] option
  * Class Access
  * @package ekstazi\crud\helpers
  */

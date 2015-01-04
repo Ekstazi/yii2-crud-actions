@@ -13,8 +13,7 @@ use ekstazi\crud\actions\ViewAction;
 use yii\web\Controller;
 
 /**
- * Class FrontController
- * controller for viewing and listing models
+ * Controller for viewing and listing models
  * @package ekstazi\crud\controllers
  */
 class FrontController extends Controller

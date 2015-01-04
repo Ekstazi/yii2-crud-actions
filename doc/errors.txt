@@ -1,0 +1,105 @@
+Array
+(
+    [0] => Array
+        (
+            [line] => 12
+            [file] => ..\ekstazi\yii2-crud-actions\src\Constants.php
+            [message] => No docblock for element 'ekstazi\crud\Constants'
+        )
+
+    [1] => Array
+        (
+            [file] => ..\ekstazi\yii2-crud-actions\src\actions\Action.php
+            [message] => broken link to \yii\db\ActiveRecordInterface in ekstazi\crud\actions\Action
+        )
+
+    [2] => Array
+        (
+            [file] => ..\ekstazi\yii2-crud-actions\src\actions\Action.php
+            [message] => broken link to \yii\filters\AccessControl in ekstazi\crud\actions\Action
+        )
+
+    [3] => Array
+        (
+            [line] => 53
+            [file] => ..\ekstazi\yii2-crud-actions\src\actions\Action.php
+            [message] => Method init has no parent to inherit from in ekstazi\crud\actions\Action.
+        )
+
+    [4] => Array
+        (
+            [line] => 53
+            [file] => ..\ekstazi\yii2-crud-actions\src\actions\Action.php
+            [message] => Method init has no parent to inherit from in ekstazi\crud\actions\Action.
+        )
+
+    [5] => Array
+        (
+            [line] => 53
+            [file] => ..\ekstazi\yii2-crud-actions\src\actions\Action.php
+            [message] => Method init has no parent to inherit from in ekstazi\crud\actions\Action.
+        )
+
+    [6] => Array
+        (
+            [file] => ..\ekstazi\yii2-crud-actions\src\actions\IndexAction.php
+            [message] => broken link to \yii\data\ActiveDataProvider in ekstazi\crud\actions\IndexAction
+        )
+
+    [7] => Array
+        (
+            [line] => 58
+            [file] => ..\ekstazi\yii2-crud-actions\src\actions\ModelFinder.php
+            [message] => No short description for element '$model'
+        )
+
+    [8] => Array
+        (
+            [line] => 33
+            [file] => ..\ekstazi\yii2-crud-actions\src\controllers\AdminController.php
+            [message] => Method actions has no parent to inherit from in ekstazi\crud\controllers\AdminController.
+        )
+
+    [9] => Array
+        (
+            [line] => 57
+            [file] => ..\ekstazi\yii2-crud-actions\src\controllers\AdminController.php
+            [message] => No docblock for element 'behaviors'
+        )
+
+    [10] => Array
+        (
+            [line] => 58
+            [file] => ..\ekstazi\yii2-crud-actions\src\controllers\AdminController.php
+            [message] => No docblock for element 'behaviors'
+        )
+
+    [11] => Array
+        (
+            [line] => 34
+            [file] => ..\ekstazi\yii2-crud-actions\src\controllers\CrudController.php
+            [message] => Method actions has no parent to inherit from in ekstazi\crud\controllers\CrudController.
+        )
+
+    [12] => Array
+        (
+            [line] => 60
+            [file] => ..\ekstazi\yii2-crud-actions\src\controllers\CrudController.php
+            [message] => No docblock for element 'behaviors'
+        )
+
+    [13] => Array
+        (
+            [line] => 61
+            [file] => ..\ekstazi\yii2-crud-actions\src\controllers\CrudController.php
+            [message] => No docblock for element 'behaviors'
+        )
+
+    [14] => Array
+        (
+            [line] => 29
+            [file] => ..\ekstazi\yii2-crud-actions\src\controllers\FrontController.php
+            [message] => Method actions has no parent to inherit from in ekstazi\crud\controllers\FrontController.
+        )
+
+)
