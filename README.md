@@ -32,7 +32,7 @@ Example of using:
     }
 ```
 
-For details, see the description of the api in doc folder
+For details, see the description of the api in [doc](http://ekstazi.github.io/yii2-crud-actions/doc/) folder
 
 yii2-crud-actions
 ====================
@@ -68,4 +68,4 @@ yii2-crud-actions
     }
 ```
 
-Для подробностей смотрите описание api в папке doc
+Для подробностей смотрите описание api в папке [doc](http://ekstazi.github.io/yii2-crud-actions/doc/)
