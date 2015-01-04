@@ -27,7 +27,10 @@ class Bootstrap implements BootstrapInterface
     public function bootstrap($app)
     {
         $i18n = \Yii::$app->i18n;
-        if (!isset($i18n->translations[Constants::MSG_CATEGORY_NAME]) && !isset($i18n->translations['ekstazi.*'])) {
+        if (
+            !isset($i18n->translations[Constants::MSG_CATEGORY_NAME]) &&
+            !isset($i18n->translations['ekstazi.*'])
+        ) {
             $i18n->translations[Constants::MSG_CATEGORY_NAME] = [
                 'class' => 'yii\i18n\PhpMessageSource',
                 'sourceLanguage' => 'en-US',

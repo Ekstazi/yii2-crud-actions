@@ -20,5 +20,5 @@ return [
     'Invalid data received for parameters "{params}".' => 'Неверные данные для параметров "{params}"',
     'Missing required parameters: {params}' => 'Отсуттвуют необходимые параметры: {params}',
     'The requested page does not exist.' => 'Запрошенная страница не найдена',
-    'You are not allowed to perform this action.' => 'Доступ к данной странице ограничен',
+    'You are not allowed to perform this action.' => 'Вам не разрешено производить данное действие.',
 ];

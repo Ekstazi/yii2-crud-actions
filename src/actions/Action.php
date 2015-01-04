@@ -11,13 +11,15 @@ namespace ekstazi\crud\actions;
 
 use ekstazi\crud\Constants;
 use yii\base\InvalidConfigException;
-use yii\base\InvalidParamException;
-use yii\db\BaseActiveRecord;
-use yii\filters\AccessControl;
+use yii\db\ActiveRecordInterface;
 use yii\web\BadRequestHttpException;
 use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 
+/**
+ * Action is the base class for action classes that implement CRUD.
+ * @package ekstazi\crud\actions
+ */
 class Action extends \yii\base\Action
 {
     /**
@@ -28,13 +30,19 @@ class Action extends \yii\base\Action
     public $modelClass;
 
     /**
-     * @var mixed A rule to check access. It can be one of the followings:
+     * @var callable a PHP callable that will be called when running an action to determine
+     * if the current user has the permission to execute the action. If not set, the access
+     * check will not be performed. The signature of the callable should be as follows,
      *
-     * - If not set, the access check will not be performed.
-     * - A PHP callable. The callable will be executed to get access status. The signature of callable
-     *   should be `function ($params)`, where `$params` is array of form
-     *   `[action=><action object currently running>, model=><model object, can be null(e.g IndexAction)>]`.
-     * - If string then used as role name and check access by role
+     * ```php
+     * function ($model = null) {
+     *     // $model is the requested model instance.
+     *     // If null, it means no specific model (e.g. IndexAction)
+     * }
+     * ```
+     *
+     * If callable return false then perform standard access control filter behavior
+     * (like in [[AccessControl]]).
      */
     public $checkAccess;
 
@@ -49,32 +57,31 @@ class Action extends \yii\base\Action
     }
 
     /**
+     * Redirect to route passed as param
      * @param mixed $route the route to redirect to. It can be one of the followings:
      *
      * - A PHP callable. The callable will be executed to get route. The signature of the callable
-     *   should be `function ($model)`, where `$model` is model object.
-     * - An array. Treated as route. If last value of route array is @_pk_ then replaced to appropriate pk of model.
-     * - A string. Treated as redirect url
+     *   should be:
      *
-     * @param BaseActiveRecord $model
+     * ```php
+     * function ($model){
+     *     // $model is the model object.
+     * }
+     * ```
+     *
+     * The callable should return route/url to redirect to.
+     *
+     * - An array. Treated as route.
+     * - A string. Treated as url.
+     *
+     * @param ActiveRecordInterface $model
      * @return mixed
      */
-    protected function redirect($route, BaseActiveRecord $model)
+    protected function redirect($route, ActiveRecordInterface $model)
     {
         // if callable
-        if ($route instanceof \Closure) {
+        if ($route !== null)
             $route = call_user_func($route, $model);
-
-            // if pk token found in route
-        } elseif (is_array($route) && end($route) == Constants::PK_TOKEN) {
-            array_pop($route);
-
-            $pk = $model->getPrimaryKey();
-            if (is_array($pk))
-                $route = $route + $pk;
-            else
-                $route['id'] = $pk;
-        }
 
         return $this->controller->redirect($route);
     }
@@ -86,7 +93,7 @@ class Action extends \yii\base\Action
      * @throws BadRequestHttpException if error on fetching params for pk occured
      * @throws NotFoundHttpException if model not exists
      *
-     * @return BaseActiveRecord found model
+     * @return ActiveRecordInterface found model
      */
     public function findModel($params)
     {
@@ -105,7 +112,7 @@ class Action extends \yii\base\Action
     }
 
     /**
-     * Ensure this action allowed for current user
+     * Ensure this action is allowed for current user
      * @param array $params Params to be passed to {$this->checkAccess}
      * @throws ForbiddenHttpException
      */
@@ -116,14 +123,10 @@ class Action extends \yii\base\Action
 
         $params['action'] = $this;
 
-        $user = \Yii::$app->user;
-
-        $allowed = ($this->checkAccess instanceof \Closure) ?
-            call_user_func($this->checkAccess, $params) :
-            $user->can($this->checkAccess, $params);
-
-        if ($allowed)
+        if (call_user_func($this->checkAccess, $params))
             return;
+
+        $user = \Yii::$app->user;
 
         if ($user->getIsGuest())
             $user->loginRequired();
@@ -132,31 +135,31 @@ class Action extends \yii\base\Action
                 Constants::MSG_CATEGORY_NAME,
                 'You are not allowed to perform this action.'
             ));
+
     }
 
     /**
-     * @param $saveMethod mixed method to save model. Can be one of the followings:
+     * @param callable $saveMethod a PHP callable that will be called to save model. If not set,
+     * {{BaseActiveRecord::save}} will be used instead.
+     * The signature of the callable should be:
      *
-     * - A null. Model will be saved with {{BaseActiveRecord::save}} method
-     * - A PHP callable. The callable will be executed for saving model. The signature of callable should be
-     *   `function($model)` where `$model` is model object to save. Should return of saving operation
-     * - A string containing method name in model. This method will be called for save.
-     *   Should return of saving operation
+     * ```php
+     * function($model){
+     *     // $model is the model object to save.
+     * }
+     * ```
      *
-     * @param BaseActiveRecord $model
+     * The callable should return status of saving operation
+     *
+     * @param ActiveRecordInterface $model
      * @return bool|mixed
      */
-    protected function saveModel($saveMethod, BaseActiveRecord $model)
+    protected function saveModel($saveMethod, ActiveRecordInterface $model)
     {
-        if (!isset($saveMethod))
-            return $model->save();
-
-        if ($saveMethod instanceof \Closure)
+        if ($saveMethod !== null)
             return call_user_func($saveMethod, $model);
 
-        if (is_string($saveMethod) && $model->hasMethod($saveMethod))
-            return $model->$saveMethod();
-
-        throw new InvalidParamException('Unsupported type of {{$saveMethod}} parameter');
+        return $model->save();
     }
+
 }

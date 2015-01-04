@@ -8,7 +8,6 @@
 
 namespace ekstazi\crud\actions;
 
-use ekstazi\crud\Constants;
 use yii\base\Model;
 
 
@@ -24,12 +23,20 @@ class UpdateAction extends Action
      * @var mixed $redirectTo the route to redirect to. It can be one of the followings:
      *
      * - A PHP callable. The callable will be executed to get route. The signature of the callable
-     *   should be `function ($model)`, where `$model` is model object.
+     *   should be:
      *
-     * - An array. Treated as route. If last value of route array is @_pk_ then replaced to appropriate pk of model.
-     * - A string. Treated as redirect url
+     * ```php
+     * function ($model){
+     *     // $model is the model object.
+     * }
+     * ```
+     *
+     * The callable should return route/url to redirect to.
+     *
+     * - An array. Treated as route.
+     * - A string. Treated as url.
      */
-    public $redirectTo = ['view', Constants::PK_TOKEN];
+    public $redirectTo;
 
     /**
      * @var string the scenario to be assigned to the new model before it is validated and saved.
@@ -42,16 +49,30 @@ class UpdateAction extends Action
     public $viewName = 'update';
 
     /**
-     * @var mixed Ф method to save model. Can be one of the followings:
+     * @var callable a PHP callable that will be called to save model. If not set,
+     * {{BaseActiveRecord::save}} will be used instead.
+     * The signature of the callable should be:
      *
-     * - If not set model will be saved with {{BaseActiveRecord::save}} method
-     * - A PHP callable. The callable will be executed for saving model. The signature of callable should be
-     *   `function($model)` where `$model` is model object to save. Should return of saving operation
-     * - A string containing method name in model. This method will be called for save.
-     *   Should return of saving operation
+     * ```php
+     * function($model){
+     *     // $model is the model object to save.
+     * }
+     * ```
      *
+     * The callable should return status of saving operation
      */
     public $saveMethod;
+
+    /**
+     * @inheritdoc
+     */
+    public function init()
+    {
+        parent::init();
+        if ($this->redirectTo === null)
+            $this->redirectTo = \ekstazi\crud\helpers\Model::redirectUrl(['view']);
+    }
+
 
     /**
      * @throws \yii\web\BadRequestHttpException
@@ -62,13 +83,15 @@ class UpdateAction extends Action
         $model = $this->findModel(\Yii::$app->request->get());
         $model->scenario = $this->scenario;
 
-        $this->ensureAccess(compact('model'));
+        $this->ensureAccess(['model' => $model]);
 
         if ($model->load(\Yii::$app->request->post()) && $this->saveModel($this->saveMethod, $model)) {
             return $this->redirect($this->redirectTo, $model);
-        } else {
-            return $this->controller->render($this->viewName, compact('model'));
         }
+
+        return $this->controller->render($this->viewName, [
+            'model' => $model
+        ]);
     }
 
 }

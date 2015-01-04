@@ -24,24 +24,18 @@ class IndexAction extends Action
 {
 
     /**
-     * @var mixed expression for prepare data provider. It can be one of the followings:
+     * @var callable a PHP callable that will be called to prepare a data provider that
+     * should return a collection of the models. If not set, [[prepareDataProvider()]] will be used instead.
+     * The signature of the callable should be:
      *
-     * - a PHP callable that will be called to prepare a data provider that should return a collection of the models.
-     *   The signature of the callable should be:
+     * ```php
+     * function ($model) {
+     *     // $model is the model object
+     * }
+     * ```
      *
-     *   ```php
-     *   function ($action, $model) {
-     *     // $action is the action object currently running
-     *     // $model is the searcher model
-     *   }
-     *   ```
-     *
-     *   The callable should return an instance of [[ActiveDataProvider]].
-     *
-     * - a string name of model method that will be called to get data provider.
-     *   Should return an instance of [[ActiveDataProvider]]. Additionally the action object passed as first argument.
-     *
-     * - if not set, [[prepareDataProvider()]] will be used instead.
+     * The callable should return an instance of [[ActiveDataProvider]], or throw an exception
+     * if not valid params passed.
      */
     public $prepareDataProvider;
 
@@ -61,26 +55,25 @@ class IndexAction extends Action
         $searchModel = new $this->modelClass;
         $dataProvider = $this->prepareDataProvider($searchModel);
 
-        return $this->controller->render($this->viewName, compact('searchModel', 'dataProvider'));
+        return $this->controller->render($this->viewName, [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
     }
 
     /**
      * Prepares the data provider that should return the requested collection of the models.
+     * @param $searchModel BaseActiveRecord
      * @return ActiveDataProvider
      */
-    protected function prepareDataProvider(BaseActiveRecord $model)
+    protected function prepareDataProvider($searchModel)
     {
-        if (!isset($this->prepareDataProvider))
-            return new ActiveDataProvider([
-                'query' => $model::find(),
-            ]);
+        if ($this->prepareDataProvider !== null) {
+            return call_user_func($this->prepareDataProvider, $searchModel);
+        }
 
-        if ($this->prepareDataProvider instanceof \Closure)
-            return call_user_func($this->prepareDataProvider, $this, $model);
-
-        if (is_string($this->prepareDataProvider) && $model->hasMethod($this->prepareDataProvider))
-            return $model->{$this->prepareDataProvider}($this);
-
-        throw new InvalidConfigException('Not supported configuration fore {{prepareDataProvider}} property');
+        return new ActiveDataProvider([
+            'query' => $searchModel::find(),
+        ]);
     }
 }

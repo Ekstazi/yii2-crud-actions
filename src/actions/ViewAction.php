@@ -9,8 +9,6 @@
 namespace ekstazi\crud\actions;
 
 
-use yii\web\Response;
-
 /**
  * Class ViewAction
  * View model action
@@ -31,8 +29,10 @@ class ViewAction extends Action
     public function run()
     {
         $model = $this->findModel(\Yii::$app->request->get());
-        $this->ensureAccess(compact('model'));
+        $this->ensureAccess(['model' => $model]);
 
-        return $this->controller->render($this->viewName, compact('model'));
+        return $this->controller->render($this->viewName, [
+            'model' => $model
+        ]);
     }
 } 

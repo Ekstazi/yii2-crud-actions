@@ -25,15 +25,22 @@ class DeleteAction extends Action
      * @var mixed $redirectTo the route to redirect to. It can be one of the followings:
      *
      * - A PHP callable. The callable will be executed to get route. The signature of the callable
-     *   should be `function ($model)`, where `$model` is model object.
+     *   should be:
      *
-     * - An array. Treated as route. If last value of route array is @_pk_ then replaced to appropriate pk of model.
-     * - A string. Treated as redirect url
+     * ```php
+     * function ($model){
+     *     // $model is the model object.
+     * }
+     * ```
+     *
+     * The callable should return route/url to redirect to.
+     *
+     * - An array. Treated as route.
+     * - A string. Treated as url.
      */
     public $redirectTo = ['index'];
 
     /**
-     * @return Response
      * @throws \yii\db\StaleObjectException
      * @throws \yii\web\BadRequestHttpException
      * @throws \yii\web\NotFoundHttpException
@@ -41,7 +48,7 @@ class DeleteAction extends Action
     public function run()
     {
         $model = $this->findModel(\Yii::$app->request->get());
-        $this->ensureAccess(compact('model'));
+        $this->ensureAccess(['model'=>$model]);
 
         if ($model->delete() === false) {
             throw new ServerErrorHttpException('Failed to delete the object for unknown reason.');

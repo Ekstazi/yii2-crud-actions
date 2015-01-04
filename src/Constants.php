@@ -11,7 +11,5 @@ namespace ekstazi\crud;
 
 interface Constants
 {
-    const PK_TOKEN = "@_pk_";
-
     const MSG_CATEGORY_NAME = "ekstazi/crud";
 } 

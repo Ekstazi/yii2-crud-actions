@@ -125,27 +125,24 @@ class ModelFinder extends Model
         }
 
         if (count($missing)) {
-            return $this->addError($attr, \Yii::t(
+            $this->addError($attr, \Yii::t(
                 Constants::MSG_CATEGORY_NAME,
                 'Missing required parameters: {params}',
-                [
-                    'params' => implode(', ', $missing),
-                ]
+                ['params' => implode(', ', $missing)]
             ));
+            return;
         }
 
         if (count($invalid)) {
-            return $this->addError($attr, \Yii::t(
+            $this->addError($attr, \Yii::t(
                 Constants::MSG_CATEGORY_NAME,
                 'Invalid data received for parameters "{params}".',
-                [
-                    'params' => implode(', ', $invalid),
-                ]
+                ['params' => implode(', ', $invalid)]
             ));
+            return;
         }
 
         $this->_pk = $columns;
-
     }
 
     /**
