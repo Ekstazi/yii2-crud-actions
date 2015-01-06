@@ -55,7 +55,7 @@ class ModelFinder extends Model
     /**
      * @var BaseActiveRecord founded model
      */
-    public $model;
+    protected $_model;
 
     /**
      * @return array
@@ -72,7 +72,7 @@ class ModelFinder extends Model
      * @param array $params
      * @return bool whether the validation succeeds
      */
-    public function load($params = [], $formName = null)
+    public function load($params = [])
     {
         $this->params = $params;
         return $this->validate();
@@ -155,17 +155,19 @@ class ModelFinder extends Model
     }
 
     /**
-     * Check if model exists
-     * @return bool
-     * @throws InvalidConfigException
+     * Get founded model
+     * @return BaseActiveRecord
      */
-    public function exists()
+    public function getModel()
     {
         if (!isset($this->_pk))
             throw new InvalidCallException('Invalid usage. You must call this method only if load method succeeds');
 
+        if(isset($this->_model))
+            return $this->_model;
+
         $class = $this->modelClass;
-        $this->model = $class::findOne($this->_pk);
-        return isset($this->model);
+        return $this->_model = $class::findOne($this->_pk);
     }
+
 }

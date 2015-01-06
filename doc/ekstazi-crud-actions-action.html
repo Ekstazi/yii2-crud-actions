@@ -116,12 +116,7 @@ if the current user has the permission to execute the action.</td>
 <tr>
   <th>Method</th><th>Description</th><th>Defined By</th>
 </tr>
-            <tr id="findModel()">
-        <td><a href="ekstazi-crud-actions-action.html#findModel()-detail">findModel()</a></td>
-        <td>Find model by its pk from params</td>
-        <td><a href="ekstazi-crud-actions-action.html">ekstazi\crud\actions\Action</a></td>
-    </tr>
-            <tr id="init()">
+                    <tr id="init()">
         <td><a href="ekstazi-crud-actions-action.html#init()-detail">init()</a></td>
         <td></td>
         <td><a href="ekstazi-crud-actions-action.html">ekstazi\crud\actions\Action</a></td>
@@ -148,7 +143,17 @@ if the current user has the permission to execute the action.</td>
         <td>Ensure this action is allowed for current user</td>
         <td><a href="ekstazi-crud-actions-action.html">ekstazi\crud\actions\Action</a></td>
     </tr>
-                    <tr id="redirect()">
+            <tr id="findModel()">
+        <td><a href="ekstazi-crud-actions-action.html#findModel()-detail">findModel()</a></td>
+        <td>Find model by its pk from params otherwise the not found exception will be thrown</td>
+        <td><a href="ekstazi-crud-actions-action.html">ekstazi\crud\actions\Action</a></td>
+    </tr>
+            <tr id="findModelByPk()">
+        <td><a href="ekstazi-crud-actions-action.html#findModelByPk()-detail">findModelByPk()</a></td>
+        <td>Extract pk from params and find model</td>
+        <td><a href="ekstazi-crud-actions-action.html">ekstazi\crud\actions\Action</a></td>
+    </tr>
+                <tr id="redirect()">
         <td><a href="ekstazi-crud-actions-action.html#redirect()-detail">redirect()</a></td>
         <td>Redirect to route passed as param</td>
         <td><a href="ekstazi-crud-actions-action.html">ekstazi\crud\actions\Action</a></td>
@@ -249,19 +254,29 @@ This property must be set.</p>
         
         findModel()
         <span class="detail-header-tag small">
-            public            method
+            protected            method
                     </span>
     </div>
 
     <div class="doc-description">
-        <p><strong>Find model by its pk from params</strong></p>
+        <p><strong>Find model by its pk from params otherwise the not found exception will be thrown</strong></p>
 
         
             </div>
 
     <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature">\yii\db\ActiveRecordInterface <strong><a href="ekstazi-crud-actions-action.html#findModel()-detail">findModel</a></strong><span style="color: #0000BB"></span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">$params&nbsp;</span><span style="color: #007700">)</span></td></tr>
+        <tr><td colspan="3" class="signature">\yii\db\ActiveRecordInterface <strong><a href="ekstazi-crud-actions-action.html#findModel()-detail">findModel</a></strong><span style="color: #0000BB"></span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">$findModel</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$params&nbsp;</span><span style="color: #007700">)</span></td></tr>
                                     <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$findModel</span></td>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.callable">callable</a></td>
+                  <td class="param-desc-col"><p>A PHP callable that will be called to return the model corresponding
+to the specified primary key value. If not set, <a href="ekstazi-crud-actions-action.html#findModelByPk()-detail">findModelByPk()</a> will be used instead.
+The signature of the callable should be:</p>
+<pre><code class="language-php"><span style="color: #0000BB"></span><span style="color: #007700">function&nbsp;(</span><span style="color: #0000BB">$params</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;$params&nbsp;is&nbsp;the&nbsp;params&nbsp;from&nbsp;request<br /></span><span style="color: #007700">}</span></code></pre>
+<p>The callable should return the model found.</p>
+</td>
+                </tr>
+                            <tr>
                   <td class="param-name-col"><span style="color: #0000BB">$params</span></td>
                   <td class="param-type-col"><a href="http://www.php.net/language.types.array">array</a></td>
                   <td class="param-desc-col"><p>Params for query</p>
@@ -284,6 +299,38 @@ This property must be set.</p>
                   <td class="param-type-col">\yii\web\NotFoundHttpException</td>
                   <td class="param-desc-col"><p>if model not exists</p>
 </td>
+                </tr>
+                        </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="findModelByPk()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="ekstazi-crud-actions-action.html#findModelByPk()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        findModelByPk()
+        <span class="detail-header-tag small">
+            protected            method
+                    </span>
+    </div>
+
+    <div class="doc-description">
+        <p><strong>Extract pk from params and find model</strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature">\yii\db\BaseActiveRecord <strong><a href="ekstazi-crud-actions-action.html#findModelByPk()-detail">findModelByPk</a></strong><span style="color: #0000BB"></span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">$params&nbsp;</span><span style="color: #007700">)</span></td></tr>
+                                    <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$params</span></td>
+                  <td class="param-type-col"></td>
+                  <td class="param-desc-col"></td>
+                </tr>
+                                                    <tr>
+                  <th class="param-name-col">throws</th>
+                  <td class="param-type-col">\yii\web\BadRequestHttpException</td>
+                  <td class="param-desc-col"></td>
                 </tr>
                         </table>
 
@@ -434,7 +481,7 @@ The signature of the callable should be:</p>
 </div>
 
 <footer class="footer">
-        <p class="pull-right"><small>Page generated on Sun, 04 Jan 2015 19:53:43 +0200</small></p>
+        <p class="pull-right"><small>Page generated on Tue, 06 Jan 2015 21:02:17 +0200</small></p>
     Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
 
 <script type="text/javascript">jQuery(document).ready(function () {

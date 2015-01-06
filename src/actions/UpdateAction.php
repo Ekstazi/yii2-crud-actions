@@ -60,7 +60,22 @@ class UpdateAction extends Action
      *
      * The callable should return status of saving operation
      */
-    public $saveMethod;
+    public $saveModel;
+
+    /**
+     * @var callable a PHP callable that will be called to return the model corresponding
+     * to the specified primary key value. If not set, [[findModelByPk()]] will be used instead.
+     * The signature of the callable should be:
+     *
+     * ```php
+     * function ($params) {
+     *     // $params is the params from request
+     * }
+     * ```
+     *
+     * The callable should return the model found. Otherwise the not found exception will be thrown.
+     */
+    public $findModel;
 
     /**
      * @inheritdoc
@@ -79,12 +94,13 @@ class UpdateAction extends Action
      */
     public function run()
     {
-        $model = $this->findModel(\Yii::$app->request->get());
+        $model = $this->findModel($this->findModel, \Yii::$app->request->get());
+
         $model->scenario = $this->scenario;
 
         $this->ensureAccess(['model' => $model]);
 
-        if ($model->load(\Yii::$app->request->post()) && $this->saveModel($this->saveMethod, $model)) {
+        if ($model->load(\Yii::$app->request->post()) && $this->saveModel($this->saveModel, $model)) {
             return $this->redirect($this->redirectTo, $model);
         }
 

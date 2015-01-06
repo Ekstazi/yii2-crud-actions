@@ -61,7 +61,7 @@ class CreateAction extends Action
      *
      * The callable should return status of saving operation
      */
-    public $saveMethod;
+    public $saveModel;
 
     /**
      * @inheritdoc
@@ -83,7 +83,7 @@ class CreateAction extends Action
         /** @var BaseActiveRecord $model */
         $model = new $this->modelClass(['scenario' => $this->scenario]);
 
-        if ($model->load(\Yii::$app->request->post()) && $this->saveModel($this->saveMethod, $model)) {
+        if ($model->load(\Yii::$app->request->post()) && $this->saveModel($this->saveModel, $model)) {
             return $this->redirect($this->redirectTo, $model);
         }
 

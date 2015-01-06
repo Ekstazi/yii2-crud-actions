@@ -86,13 +86,7 @@ Try to find record by its class name and params.</strong></p>
 <tr>
   <th>Property</th><th>Type</th><th>Description</th><th>Defined By</th>
 </tr>
-            <tr id="$model">
-        <td><a href="ekstazi-crud-actions-modelfinder.html#$model-detail">$model</a></td>
-        <td>\yii\db\BaseActiveRecord</td>
-        <td>Founded model</td>
-        <td><a href="ekstazi-crud-actions-modelfinder.html">ekstazi\crud\actions\ModelFinder</a></td>
-    </tr>
-            <tr id="$modelClass">
+                <tr id="$modelClass">
         <td><a href="ekstazi-crud-actions-modelfinder.html#$modelClass-detail">$modelClass</a></td>
         <td><a href="http://www.php.net/language.types.string">string</a></td>
         <td>Modelclass name</td>
@@ -122,13 +116,19 @@ Try to find record by its class name and params.</strong></p>
 <tr>
   <th>Property</th><th>Type</th><th>Description</th><th>Defined By</th>
 </tr>
-        <tr id="$_pk">
+        <tr id="$_model">
+        <td><a href="ekstazi-crud-actions-modelfinder.html#$_model-detail">$_model</a></td>
+        <td>\yii\db\BaseActiveRecord</td>
+        <td>Founded model</td>
+        <td><a href="ekstazi-crud-actions-modelfinder.html">ekstazi\crud\actions\ModelFinder</a></td>
+    </tr>
+            <tr id="$_pk">
         <td><a href="ekstazi-crud-actions-modelfinder.html#$_pk-detail">$_pk</a></td>
         <td><a href="http://www.php.net/language.types.array">array</a></td>
         <td>Searched pk</td>
         <td><a href="ekstazi-crud-actions-modelfinder.html">ekstazi\crud\actions\ModelFinder</a></td>
     </tr>
-                </table>
+            </table>
 </div>
 
 <a name="methods"></a>
@@ -152,14 +152,14 @@ Try to find record by its class name and params.</strong></p>
         <td>Create finder instance</td>
         <td><a href="ekstazi-crud-actions-modelfinder.html">ekstazi\crud\actions\ModelFinder</a></td>
     </tr>
-            <tr id="exists()">
-        <td><a href="ekstazi-crud-actions-modelfinder.html#exists()-detail">exists()</a></td>
-        <td>Check if model exists</td>
-        <td><a href="ekstazi-crud-actions-modelfinder.html">ekstazi\crud\actions\ModelFinder</a></td>
-    </tr>
             <tr id="getError()">
         <td><a href="ekstazi-crud-actions-modelfinder.html#getError()-detail">getError()</a></td>
         <td>Get error message</td>
+        <td><a href="ekstazi-crud-actions-modelfinder.html">ekstazi\crud\actions\ModelFinder</a></td>
+    </tr>
+            <tr id="getModel()">
+        <td><a href="ekstazi-crud-actions-modelfinder.html#getModel()-detail">getModel()</a></td>
+        <td>Get founded model</td>
         <td><a href="ekstazi-crud-actions-modelfinder.html">ekstazi\crud\actions\ModelFinder</a></td>
     </tr>
             <tr id="load()">
@@ -188,6 +188,21 @@ Try to find record by its class name and params.</strong></p>
 
 <div class="property-doc">
 
+    <div class="detail-header h3" id="$_model-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="ekstazi-crud-actions-modelfinder.html#$_model-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        $_model        <span class="detailHeaderTag small">
+            protected                                    property
+                    </span>
+    </div>
+
+    <div class="signature">\yii\db\BaseActiveRecord <a href="ekstazi-crud-actions-modelfinder.html#$_model-detail">$_model</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">null</span></div>
+
+    <p>Founded model</p>
+
+    
+
     <div class="detail-header h3" id="$_pk-detail">
         <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
         <a class="tool-link hash" href="ekstazi-crud-actions-modelfinder.html#$_pk-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
@@ -200,21 +215,6 @@ Try to find record by its class name and params.</strong></p>
     <div class="signature"><a href="http://www.php.net/language.types.array">array</a> <a href="ekstazi-crud-actions-modelfinder.html#$_pk-detail">$_pk</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">null</span></div>
 
     <p>Searched pk</p>
-
-    
-
-    <div class="detail-header h3" id="$model-detail">
-        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="ekstazi-crud-actions-modelfinder.html#$model-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
-        
-        $model        <span class="detailHeaderTag small">
-            public                                    property
-                    </span>
-    </div>
-
-    <div class="signature">\yii\db\BaseActiveRecord <a href="ekstazi-crud-actions-modelfinder.html#$model-detail">$model</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">null</span></div>
-
-    <p>Founded model</p>
 
     
 
@@ -279,33 +279,6 @@ Try to find record by its class name and params.</strong></p>
 
 <!--	-->
 
-    <div class="detail-header h3" id="exists()-detail">
-        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="ekstazi-crud-actions-modelfinder.html#exists()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
-        
-        exists()
-        <span class="detail-header-tag small">
-            public            method
-                    </span>
-    </div>
-
-    <div class="doc-description">
-        <p><strong>Check if model exists</strong></p>
-
-        
-            </div>
-
-    <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature">bool <strong><a href="ekstazi-crud-actions-modelfinder.html#exists()-detail">exists</a></strong><span style="color: #0000BB"></span><span style="color: #007700">(&nbsp;)</span></td></tr>
-                                                            <tr>
-                  <th class="param-name-col">throws</th>
-                  <td class="param-type-col">\yii\base\InvalidConfigException</td>
-                  <td class="param-desc-col"></td>
-                </tr>
-                        </table>
-
-<!--	-->
-
     <div class="detail-header h3" id="getError()-detail">
         <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
         <a class="tool-link hash" href="ekstazi-crud-actions-modelfinder.html#getError()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
@@ -328,6 +301,28 @@ Try to find record by its class name and params.</strong></p>
 
 <!--	-->
 
+    <div class="detail-header h3" id="getModel()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="ekstazi-crud-actions-modelfinder.html#getModel()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        getModel()
+        <span class="detail-header-tag small">
+            public            method
+                    </span>
+    </div>
+
+    <div class="doc-description">
+        <p><strong>Get founded model</strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature">\yii\db\BaseActiveRecord <strong><a href="ekstazi-crud-actions-modelfinder.html#getModel()-detail">getModel</a></strong><span style="color: #0000BB"></span><span style="color: #007700">(&nbsp;)</span></td></tr>
+            </table>
+
+<!--	-->
+
     <div class="detail-header h3" id="load()-detail">
         <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
         <a class="tool-link hash" href="ekstazi-crud-actions-modelfinder.html#load()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
@@ -345,15 +340,10 @@ Try to find record by its class name and params.</strong></p>
             </div>
 
     <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature">bool <strong><a href="ekstazi-crud-actions-modelfinder.html#load()-detail">load</a></strong><span style="color: #0000BB"></span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">$params&nbsp;</span><span style="color: #007700">=&nbsp;[],&nbsp;</span><span style="color: #0000BB">$formName&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">null&nbsp;</span><span style="color: #007700">)</span></td></tr>
+        <tr><td colspan="3" class="signature">bool <strong><a href="ekstazi-crud-actions-modelfinder.html#load()-detail">load</a></strong><span style="color: #0000BB"></span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">$params&nbsp;</span><span style="color: #007700">=&nbsp;[]&nbsp;)</span></td></tr>
                                     <tr>
                   <td class="param-name-col"><span style="color: #0000BB">$params</span></td>
                   <td class="param-type-col"><a href="http://www.php.net/language.types.array">array</a></td>
-                  <td class="param-desc-col"></td>
-                </tr>
-                            <tr>
-                  <td class="param-name-col"><span style="color: #0000BB">$formName</span></td>
-                  <td class="param-type-col"></td>
                   <td class="param-desc-col"></td>
                 </tr>
                                         <tr>
@@ -458,7 +448,7 @@ Try to find record by its class name and params.</strong></p>
 </div>
 
 <footer class="footer">
-        <p class="pull-right"><small>Page generated on Sun, 04 Jan 2015 19:53:43 +0200</small></p>
+        <p class="pull-right"><small>Page generated on Tue, 06 Jan 2015 21:02:17 +0200</small></p>
     Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
 
 <script type="text/javascript">jQuery(document).ready(function () {

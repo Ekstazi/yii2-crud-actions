@@ -129,12 +129,7 @@ should return a collection of the models.</td>
 <tr>
   <th>Method</th><th>Description</th><th>Defined By</th>
 </tr>
-            <tr class="inherited" id="findModel()">
-        <td><a href="ekstazi-crud-actions-action.html#findModel()-detail">findModel()</a></td>
-        <td>Find model by its pk from params</td>
-        <td><a href="ekstazi-crud-actions-action.html">ekstazi\crud\actions\Action</a></td>
-    </tr>
-            <tr class="inherited" id="init()">
+                    <tr class="inherited" id="init()">
         <td><a href="ekstazi-crud-actions-action.html#init()-detail">init()</a></td>
         <td></td>
         <td><a href="ekstazi-crud-actions-action.html">ekstazi\crud\actions\Action</a></td>
@@ -166,7 +161,17 @@ should return a collection of the models.</td>
         <td>Ensure this action is allowed for current user</td>
         <td><a href="ekstazi-crud-actions-action.html">ekstazi\crud\actions\Action</a></td>
     </tr>
-                    <tr id="prepareDataProvider()">
+            <tr class="inherited" id="findModel()">
+        <td><a href="ekstazi-crud-actions-action.html#findModel()-detail">findModel()</a></td>
+        <td>Find model by its pk from params otherwise the not found exception will be thrown</td>
+        <td><a href="ekstazi-crud-actions-action.html">ekstazi\crud\actions\Action</a></td>
+    </tr>
+            <tr class="inherited" id="findModelByPk()">
+        <td><a href="ekstazi-crud-actions-action.html#findModelByPk()-detail">findModelByPk()</a></td>
+        <td>Extract pk from params and find model</td>
+        <td><a href="ekstazi-crud-actions-action.html">ekstazi\crud\actions\Action</a></td>
+    </tr>
+                <tr id="prepareDataProvider()">
         <td><a href="ekstazi-crud-actions-indexaction.html#prepareDataProvider()-detail">prepareDataProvider()</a></td>
         <td>Prepares the data provider that should return the requested collection of the models.</td>
         <td><a href="ekstazi-crud-actions-indexaction.html">ekstazi\crud\actions\IndexAction</a></td>
@@ -324,7 +329,7 @@ if not valid params passed.</p>
 </div>
 
 <footer class="footer">
-        <p class="pull-right"><small>Page generated on Sun, 04 Jan 2015 19:53:43 +0200</small></p>
+        <p class="pull-right"><small>Page generated on Tue, 06 Jan 2015 21:02:17 +0200</small></p>
     Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
 
 <script type="text/javascript">jQuery(document).ready(function () {

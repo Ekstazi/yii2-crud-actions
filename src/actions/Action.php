@@ -87,31 +87,6 @@ class Action extends \yii\base\Action
     }
 
     /**
-     * Find model by its pk from params
-     * @param array $params Params for query
-     *
-     * @throws BadRequestHttpException if error on fetching params for pk occured
-     * @throws NotFoundHttpException if model not exists
-     *
-     * @return ActiveRecordInterface found model
-     */
-    public function findModel($params)
-    {
-        $finder = ModelFinder::create($this->modelClass);
-
-        if (!$finder->load($params))
-            throw new BadRequestHttpException($finder->getError());
-
-        if (!$finder->exists())
-            throw new NotFoundHttpException(\Yii::t(
-                Constants::MSG_CATEGORY_NAME,
-                'The requested page does not exist.'
-            ));
-
-        return $finder->model;
-    }
-
-    /**
      * Ensure this action is allowed for current user
      * @param array $params Params to be passed to {$this->checkAccess}
      * @throws ForbiddenHttpException
@@ -160,6 +135,58 @@ class Action extends \yii\base\Action
             return call_user_func($saveMethod, $model);
 
         return $model->save();
+    }
+
+    /**
+     * Find model by its pk from params otherwise the not found exception will be thrown
+     * @param callable $findModel a PHP callable that will be called to return the model corresponding
+     * to the specified primary key value. If not set, [[findModelByPk()]] will be used instead.
+     * The signature of the callable should be:
+     *
+     * ```php
+     * function ($params) {
+     *     // $params is the params from request
+     * }
+     * ```
+     *
+     * The callable should return the model found.
+     *
+     * @param array $params Params for query
+     *
+     * @throws BadRequestHttpException if error on fetching params for pk occured
+     * @throws NotFoundHttpException if model not exists
+     *
+     * @return ActiveRecordInterface found model
+     */
+    protected function findModel($findModel, $params)
+    {
+        $model = ($findModel === null) ?
+            $this->findModelByPk($params) :
+            $model = call_user_func($findModel, $params);
+
+        if (!$model)
+            throw new NotFoundHttpException(\Yii::t(
+                Constants::MSG_CATEGORY_NAME,
+                'The requested page does not exist.'
+            ));
+
+        return $model;
+    }
+
+    /**
+     * Extract pk from params and find model
+     * @param $params
+     * @return \yii\db\BaseActiveRecord
+     * @throws BadRequestHttpException
+     */
+    protected function findModelByPk($params)
+    {
+        $finder = ModelFinder::create($this->modelClass);
+
+        if (!$finder->load($params))
+            throw new BadRequestHttpException($finder->getError());
+
+        return $finder->getModel();
     }
 
 }

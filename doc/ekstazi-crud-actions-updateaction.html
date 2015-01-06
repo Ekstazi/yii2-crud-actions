@@ -91,6 +91,13 @@ yii\base\Action</td></tr>
 if the current user has the permission to execute the action.</td>
         <td><a href="ekstazi-crud-actions-action.html">ekstazi\crud\actions\Action</a></td>
     </tr>
+            <tr id="$findModel">
+        <td><a href="ekstazi-crud-actions-updateaction.html#$findModel-detail">$findModel</a></td>
+        <td><a href="http://www.php.net/language.types.callable">callable</a></td>
+        <td>A PHP callable that will be called to return the model corresponding
+to the specified primary key value.</td>
+        <td><a href="ekstazi-crud-actions-updateaction.html">ekstazi\crud\actions\UpdateAction</a></td>
+    </tr>
             <tr class="inherited" id="$modelClass">
         <td><a href="ekstazi-crud-actions-action.html#$modelClass-detail">$modelClass</a></td>
         <td><a href="http://www.php.net/language.types.string">string</a></td>
@@ -103,8 +110,8 @@ if the current user has the permission to execute the action.</td>
         <td>The route to redirect to.</td>
         <td><a href="ekstazi-crud-actions-updateaction.html">ekstazi\crud\actions\UpdateAction</a></td>
     </tr>
-            <tr id="$saveMethod">
-        <td><a href="ekstazi-crud-actions-updateaction.html#$saveMethod-detail">$saveMethod</a></td>
+            <tr id="$saveModel">
+        <td><a href="ekstazi-crud-actions-updateaction.html#$saveModel-detail">$saveModel</a></td>
         <td><a href="http://www.php.net/language.types.callable">callable</a></td>
         <td>A PHP callable that will be called to save model.</td>
         <td><a href="ekstazi-crud-actions-updateaction.html">ekstazi\crud\actions\UpdateAction</a></td>
@@ -140,12 +147,7 @@ if the current user has the permission to execute the action.</td>
 <tr>
   <th>Method</th><th>Description</th><th>Defined By</th>
 </tr>
-            <tr class="inherited" id="findModel()">
-        <td><a href="ekstazi-crud-actions-action.html#findModel()-detail">findModel()</a></td>
-        <td>Find model by its pk from params</td>
-        <td><a href="ekstazi-crud-actions-action.html">ekstazi\crud\actions\Action</a></td>
-    </tr>
-            <tr id="init()">
+                    <tr id="init()">
         <td><a href="ekstazi-crud-actions-updateaction.html#init()-detail">init()</a></td>
         <td></td>
         <td><a href="ekstazi-crud-actions-updateaction.html">ekstazi\crud\actions\UpdateAction</a></td>
@@ -177,7 +179,17 @@ if the current user has the permission to execute the action.</td>
         <td>Ensure this action is allowed for current user</td>
         <td><a href="ekstazi-crud-actions-action.html">ekstazi\crud\actions\Action</a></td>
     </tr>
-                    <tr class="inherited" id="redirect()">
+            <tr class="inherited" id="findModel()">
+        <td><a href="ekstazi-crud-actions-action.html#findModel()-detail">findModel()</a></td>
+        <td>Find model by its pk from params otherwise the not found exception will be thrown</td>
+        <td><a href="ekstazi-crud-actions-action.html">ekstazi\crud\actions\Action</a></td>
+    </tr>
+            <tr class="inherited" id="findModelByPk()">
+        <td><a href="ekstazi-crud-actions-action.html#findModelByPk()-detail">findModelByPk()</a></td>
+        <td>Extract pk from params and find model</td>
+        <td><a href="ekstazi-crud-actions-action.html">ekstazi\crud\actions\Action</a></td>
+    </tr>
+                <tr class="inherited" id="redirect()">
         <td><a href="ekstazi-crud-actions-action.html#redirect()-detail">redirect()</a></td>
         <td>Redirect to route passed as param</td>
         <td><a href="ekstazi-crud-actions-action.html">ekstazi\crud\actions\Action</a></td>
@@ -197,6 +209,25 @@ if the current user has the permission to execute the action.</td>
 <h2>Property Details</h2>
 
 <div class="property-doc">
+
+    <div class="detail-header h3" id="$findModel-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="ekstazi-crud-actions-updateaction.html#$findModel-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        $findModel        <span class="detailHeaderTag small">
+            public                                    property
+                    </span>
+    </div>
+
+    <div class="signature"><a href="http://www.php.net/language.types.callable">callable</a> <a href="ekstazi-crud-actions-updateaction.html#$findModel-detail">$findModel</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">null</span></div>
+
+    <p>A PHP callable that will be called to return the model corresponding
+to the specified primary key value. If not set, <a href="ekstazi-crud-actions-action.html#findModelByPk()-detail">findModelByPk()</a> will be used instead.
+The signature of the callable should be:</p>
+<pre><code class="language-php"><span style="color: #0000BB"></span><span style="color: #007700">function&nbsp;(</span><span style="color: #0000BB">$params</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;$params&nbsp;is&nbsp;the&nbsp;params&nbsp;from&nbsp;request<br /></span><span style="color: #007700">}</span></code></pre>
+<p>The callable should return the model found. Otherwise the not found exception will be thrown.</p>
+
+    
 
     <div class="detail-header h3" id="$redirectTo-detail">
         <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
@@ -223,16 +254,16 @@ should be:</li>
 
     
 
-    <div class="detail-header h3" id="$saveMethod-detail">
+    <div class="detail-header h3" id="$saveModel-detail">
         <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="ekstazi-crud-actions-updateaction.html#$saveMethod-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        <a class="tool-link hash" href="ekstazi-crud-actions-updateaction.html#$saveModel-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
         
-        $saveMethod        <span class="detailHeaderTag small">
+        $saveModel        <span class="detailHeaderTag small">
             public                                    property
                     </span>
     </div>
 
-    <div class="signature"><a href="http://www.php.net/language.types.callable">callable</a> <a href="ekstazi-crud-actions-updateaction.html#$saveMethod-detail">$saveMethod</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">null</span></div>
+    <div class="signature"><a href="http://www.php.net/language.types.callable">callable</a> <a href="ekstazi-crud-actions-updateaction.html#$saveModel-detail">$saveModel</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">null</span></div>
 
     <p>A PHP callable that will be called to save model. If not set,
 {{BaseActiveRecord::save}} will be used instead.
@@ -373,7 +404,7 @@ The signature of the callable should be:</p>
 </div>
 
 <footer class="footer">
-        <p class="pull-right"><small>Page generated on Sun, 04 Jan 2015 19:53:43 +0200</small></p>
+        <p class="pull-right"><small>Page generated on Tue, 06 Jan 2015 21:02:17 +0200</small></p>
     Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
 
 <script type="text/javascript">jQuery(document).ready(function () {
