@@ -32,7 +32,7 @@ class Model
                 );
 
             // call method with additional passed params
-            return $model->__call($methodName, array_slice(func_get_args(), 1));
+            return call_user_func_array([$model,$methodName], array_slice(func_get_args(), 1));
         };
     }
 

@@ -72,7 +72,7 @@ class ModelFinder extends Model
      * @param array $params
      * @return bool whether the validation succeeds
      */
-    public function load($params = [])
+    public function load($params = [], $formName = null)
     {
         $this->params = $params;
         return $this->validate();
@@ -163,7 +163,7 @@ class ModelFinder extends Model
         if (!isset($this->_pk))
             throw new InvalidCallException('Invalid usage. You must call this method only if load method succeeds');
 
-        if(isset($this->_model))
+        if (isset($this->_model))
             return $this->_model;
 
         $class = $this->modelClass;
