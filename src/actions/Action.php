@@ -80,7 +80,7 @@ class Action extends \yii\base\Action
     protected function redirect($route, ActiveRecordInterface $model)
     {
         // if callable
-        if ($route !== null)
+        if ($route instanceof \Closure)
             $route = call_user_func($route, $model);
 
         return $this->controller->redirect($route);
