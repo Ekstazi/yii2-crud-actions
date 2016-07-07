@@ -46,6 +46,8 @@ class Action extends \yii\base\Action
      */
     public $checkAccess;
 
+    public $viewParams = [];
+
     /**
      * @inheritdoc
      * @throws InvalidConfigException
@@ -54,36 +56,6 @@ class Action extends \yii\base\Action
     {
         if (!isset($this->modelClass))
             throw new InvalidConfigException('The "modelClass" property must be set.');
-    }
-
-    /**
-     * Redirect to route passed as param
-     * @param mixed $route the route to redirect to. It can be one of the followings:
-     *
-     * - A PHP callable. The callable will be executed to get route. The signature of the callable
-     *   should be:
-     *
-     * ```php
-     * function ($model){
-     *     // $model is the model object.
-     * }
-     * ```
-     *
-     * The callable should return route/url to redirect to.
-     *
-     * - An array. Treated as route.
-     * - A string. Treated as url.
-     *
-     * @param ActiveRecordInterface $model
-     * @return mixed
-     */
-    protected function redirect($route, ActiveRecordInterface $model)
-    {
-        // if callable
-        if ($route instanceof \Closure)
-            $route = call_user_func($route, $model);
-
-        return $this->controller->redirect($route);
     }
 
     /**
@@ -113,80 +85,28 @@ class Action extends \yii\base\Action
 
     }
 
-    /**
-     * @param callable $saveMethod a PHP callable that will be called to save model. If not set,
-     * {{BaseActiveRecord::save}} will be used instead.
-     * The signature of the callable should be:
-     *
-     * ```php
-     * function($model){
-     *     // $model is the model object to save.
-     * }
-     * ```
-     *
-     * The callable should return status of saving operation
-     *
-     * @param ActiveRecordInterface $model
-     * @return bool|mixed
-     */
-    protected function saveModel($saveMethod, ActiveRecordInterface $model)
-    {
-        if ($saveMethod !== null)
-            return call_user_func($saveMethod, $model);
-
-        return $model->save();
-    }
-
-    /**
-     * Find model by its pk from params otherwise the not found exception will be thrown
-     * @param callable $findModel a PHP callable that will be called to return the model corresponding
-     * to the specified primary key value. If not set, [[findModelByPk()]] will be used instead.
-     * The signature of the callable should be:
-     *
-     * ```php
-     * function ($params) {
-     *     // $params is the params from request
-     * }
-     * ```
-     *
-     * The callable should return the model found.
-     *
-     * @param array $params Params for query
-     *
-     * @throws BadRequestHttpException if error on fetching params for pk occured
-     * @throws NotFoundHttpException if model not exists
-     *
-     * @return ActiveRecordInterface found model
-     */
-    protected function findModel($findModel, $params)
-    {
-        $model = ($findModel === null) ?
-            $this->findModelByPk($params) :
-            $model = call_user_func($findModel, $params);
-
-        if (!$model)
-            throw new NotFoundHttpException(\Yii::t(
-                Constants::MSG_CATEGORY_NAME,
-                'The requested page does not exist.'
-            ));
-
-        return $model;
-    }
-
-    /**
-     * Extract pk from params and find model
-     * @param $params
-     * @return \yii\db\BaseActiveRecord
-     * @throws BadRequestHttpException
-     */
-    protected function findModelByPk($params)
+    protected function loadModel($params)
     {
         $finder = ModelFinder::create($this->modelClass);
 
         if (!$finder->load($params))
             throw new BadRequestHttpException($finder->getError());
 
-        return $finder->getModel();
+        if (!$model) {
+            throw new NotFoundHttpException(\Yii::t(
+                Constants::MSG_CATEGORY_NAME,
+                'The requested page does not exist.'
+            ));
+        }
+        return $model;
     }
 
+    protected function render($view, $params = [])
+    {
+        if ($this->viewParams instanceof \Closure) {
+            $this->viewParams = call_user_func($this->viewParams, $this);
+        }
+
+        return $this->controller->render($view, array_merge($this->viewParams, $params));
+    }
 }

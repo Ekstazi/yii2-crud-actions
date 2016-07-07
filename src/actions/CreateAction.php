@@ -9,6 +9,7 @@
 namespace ekstazi\crud\actions;
 
 
+use ekstazi\crud\params\RedirectTo;
 use yii\base\Model;
 use yii\db\BaseActiveRecord;
 
@@ -47,32 +48,7 @@ class CreateAction extends Action
      * - A string. Treated as url.
      */
     public $redirectTo;
-
-    /**
-     * @var callable a PHP callable that will be called to save model. If not set,
-     * {{BaseActiveRecord::save}} will be used instead.
-     * The signature of the callable should be:
-     *
-     * ```php
-     * function($model){
-     *     // $model is the model object to save.
-     * }
-     * ```
-     *
-     * The callable should return status of saving operation
-     */
-    public $saveModel;
-
-    /**
-     * @inheritdoc
-     */
-    public function init()
-    {
-        parent::init();
-        if ($this->redirectTo === null)
-            $this->redirectTo = \ekstazi\crud\helpers\Model::redirectUrl(['view']);
-    }
-
+    
     /**
      * @throws \yii\web\ForbiddenHttpException
      */
@@ -83,8 +59,9 @@ class CreateAction extends Action
         /** @var BaseActiveRecord $model */
         $model = new $this->modelClass(['scenario' => $this->scenario]);
 
-        if ($model->load(\Yii::$app->request->post()) && $this->saveModel($this->saveModel, $model)) {
-            return $this->redirect($this->redirectTo, $model);
+        if ($model->load(\Yii::$app->request->post()) && $model->save()) {
+            $redirectUrl = RedirectTo::build($this->redirectTo, $model);
+            return $this->controller->redirect($redirectUrl);
         }
 
         return $this->controller->render($this->viewName, [

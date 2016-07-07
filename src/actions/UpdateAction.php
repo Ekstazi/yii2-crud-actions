@@ -8,7 +8,11 @@
 
 namespace ekstazi\crud\actions;
 
+use ekstazi\crud\Constants;
+use ekstazi\crud\params\Finder;
+use ekstazi\crud\params\RedirectTo;
 use yii\base\Model;
+use yii\web\NotFoundHttpException;
 
 
 /**
@@ -47,46 +51,7 @@ class UpdateAction extends Action
      */
     public $viewName = 'update';
 
-    /**
-     * @var callable a PHP callable that will be called to save model. If not set,
-     * {{BaseActiveRecord::save}} will be used instead.
-     * The signature of the callable should be:
-     *
-     * ```php
-     * function($model){
-     *     // $model is the model object to save.
-     * }
-     * ```
-     *
-     * The callable should return status of saving operation
-     */
-    public $saveModel;
-
-    /**
-     * @var callable a PHP callable that will be called to return the model corresponding
-     * to the specified primary key value. If not set, [[findModelByPk()]] will be used instead.
-     * The signature of the callable should be:
-     *
-     * ```php
-     * function ($params) {
-     *     // $params is the params from request
-     * }
-     * ```
-     *
-     * The callable should return the model found. Otherwise the not found exception will be thrown.
-     */
-    public $findModel;
-
-    /**
-     * @inheritdoc
-     */
-    public function init()
-    {
-        parent::init();
-        if ($this->redirectTo === null)
-            $this->redirectTo = \ekstazi\crud\helpers\Model::redirectUrl(['view']);
-    }
-
+    
 
     /**
      * @throws \yii\web\BadRequestHttpException
@@ -94,14 +59,15 @@ class UpdateAction extends Action
      */
     public function run()
     {
-        $model = $this->findModel($this->findModel, \Yii::$app->request->get());
+        $model = $this->loadModel(\Yii::$app->request->get());
 
         $model->scenario = $this->scenario;
 
         $this->ensureAccess(['model' => $model]);
 
-        if ($model->load(\Yii::$app->request->post()) && $this->saveModel($this->saveModel, $model)) {
-            return $this->redirect($this->redirectTo, $model);
+        if ($model->load(\Yii::$app->request->post()) && $model->save()) {
+            $redirectUrl = RedirectTo::build($this->redirectTo, $model);
+            return $this->controller->redirect($redirectUrl);
         }
 
         return $this->controller->render($this->viewName, [

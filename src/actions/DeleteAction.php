@@ -9,7 +9,7 @@
 namespace ekstazi\crud\actions;
 
 
-use yii\web\Response;
+use ekstazi\crud\params\RedirectTo;
 use yii\web\ServerErrorHttpException;
 
 /**
@@ -40,35 +40,21 @@ class DeleteAction extends Action
     public $redirectTo = ['index'];
 
     /**
-     * @var callable a PHP callable that will be called to return the model corresponding
-     * to the specified primary key value. If not set, [[findModelByPk()]] will be used instead.
-     * The signature of the callable should be:
-     *
-     * ```php
-     * function ($params) {
-     *     // $params is the params from request
-     * }
-     * ```
-     *
-     * The callable should return the model found. Otherwise the not found exception will be thrown.
-     */
-    public $findModel;
-
-    /**
      * @throws \yii\db\StaleObjectException
      * @throws \yii\web\BadRequestHttpException
      * @throws \yii\web\NotFoundHttpException
      */
     public function run()
     {
-        $model = $this->findModel($this->findModel, \Yii::$app->request->get());
-
+        $model = $this->loadModel(\Yii::$app->request->get());
+        
         $this->ensureAccess(['model' => $model]);
 
         if ($model->delete() === false) {
             throw new ServerErrorHttpException('Failed to delete the object for unknown reason.');
         }
-
-        $this->redirect($this->redirectTo, $model);
+        
+        $redirectUrl = RedirectTo::build($this->redirectTo, $model);
+        return $this->controller->redirect($redirectUrl);
     }
 } 
