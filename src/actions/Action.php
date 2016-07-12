@@ -92,6 +92,7 @@ class Action extends \yii\base\Action
         if (!$finder->load($params))
             throw new BadRequestHttpException($finder->getError());
 
+        $model = $finder->getModel();
         if (!$model) {
             throw new NotFoundHttpException(\Yii::t(
                 Constants::MSG_CATEGORY_NAME,
